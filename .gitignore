@@ -103,3 +103,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+# Intellij project files
+.idea
+*.iml
+.un~
+
+# db
+*.db
+# Flask migrations
+migrations/
+!__init__.py
