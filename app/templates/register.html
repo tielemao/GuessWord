@@ -33,5 +33,6 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
+		{{ form.csrf_token }}
     </form>
 {% endblock %}

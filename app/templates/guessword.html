@@ -1,42 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hello word!</h1>
-    <table class="table table-bordered">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <h1>Guess Word</h1>
+	<form action="" method="POST">
+		{{ form.hidden_tag() }}
+        <p>
+            {{ form.words.label }}
+            {{ form.words }}
+            {% for error in form.words.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+		请在上面的文本框中粘贴或输入全部25个词进来,以空格隔开,再点击Sumbit进行提交
+		<!-- <textarea type="text" name="words" placeholder="请在此复制全部25个词进来，以空格隔开" style="width:300px; height:100px;word-break:break-all"></textarea> -->
+		<p>{{ form.submit() }}</p>
+		{{ form.csrf_token }}
+	</form>
 {% endblock %}

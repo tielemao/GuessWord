@@ -4,7 +4,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, WordsForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 
@@ -15,11 +15,11 @@ def index():
     user = {'username': 'Miguel'}
     posts = [
         {
-            'author': {'username': '铁乐猫'},
+            'author': {'username': '铁乐'},
             'body': '种一棵树最好的时机是十年前，其次是现在!'
         },
         {
-            'author': {'username': '超傻'},
+            'author': {'username': '猫'},
             'body': '那是我们都回不去的从前!'
         }
     ]
@@ -61,6 +61,10 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/guessword')
+@app.route('/guessword', methods=['GET', 'POST'])
 def guessword():
-    return render_template('guessword.html', title='Game Page')
+    form = WordsForm()
+    if request.method=='POST':
+        #wodrs = form.wodrs.data
+        return render_template('guessword_table.html', title='Game table Page', words=words)
+    return render_template('guessword.html', title='Game Page', form=form)
